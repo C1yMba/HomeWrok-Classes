@@ -28,4 +28,24 @@ public class Author {
         this.authorSurname = authorSurname;
     }
 
+    public String toString(){
+        return "\nФио автора: " +  this.authorName + " " + this.authorSurname;
+    }
+
+    public Boolean equals(Author author){
+        if(author == null){
+            return false;
+        }else {
+            return this == author;
+        }
+        // .author.equals(book.getBookAuthor()) && this.bookName.equals(book.getBookName()) && this.bookYear == book.getBookYear() - есть еще такой момент
+        // в этом случае работает и через == но так как сравниваем две строки только чере equals то equals в equals
+        // правда касаемо == хотелось бы получить объяснение почему работает
+    }
+
+    public int hashCode(){
+        int result = authorName.hashCode() + authorSurname.hashCode();
+        return result;
+    }
+
 }
