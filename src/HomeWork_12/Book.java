@@ -14,17 +14,22 @@ public class Book {
         return "Название книги: " + this.bookName + author.toString() + "\nГод издания: " + this.bookYear;
     }
 
-    public Boolean equals(Book book) {
-        if (book == null) {
+    @Override
+    public boolean equals(Object other) {
+        if (this.getClass() != other.getClass()) {
             return false;
+        }
+        Book oneBook = (Book) other;
+        if (author.equals(oneBook.author) && bookName.equals(oneBook.bookName) && bookYear == oneBook.bookYear) {
+            return true;
         } else {
-            return this == book;
-            // this.author.equals(book.getBookAuthor()) && this.bookName.equals(book.getBookName()) && this.bookYear == book.getBookYear() - и можно так
+            return false;
         }
     }
-    public int hashCode(){
-     int result = author.hashCode() + bookName.hashCode() + bookYear;
-     return result;
+
+    @Override
+    public int hashCode() {
+       return java.util.Objects.hash(author,bookName,bookYear);
     }
 
 

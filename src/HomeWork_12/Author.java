@@ -32,20 +32,21 @@ public class Author {
         return "\nФио автора: " +  this.authorName + " " + this.authorSurname;
     }
 
-    public Boolean equals(Author author){
-        if(author == null){
+    @Override
+    public boolean equals(Object other){
+        if (this.getClass() != other.getClass()) {
             return false;
-        }else {
-            return this == author;
         }
-        // .author.equals(book.getBookAuthor()) && this.bookName.equals(book.getBookName()) && this.bookYear == book.getBookYear() - есть еще такой момент
-        // в этом случае работает и через == но так как сравниваем две строки только чере equals то equals в equals
-        // правда касаемо == хотелось бы получить объяснение почему работает
+        Author author = (Author) other;
+        if (authorName.equals(author.getAuthorName()) && authorSurname.equals(author.getAuthorSurname())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int hashCode(){
-        int result = authorName.hashCode() + authorSurname.hashCode();
-        return result;
+        return java.util.Objects.hash(authorName,authorSurname);
     }
 
 }
