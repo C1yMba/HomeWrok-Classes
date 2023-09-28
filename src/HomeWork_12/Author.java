@@ -28,4 +28,28 @@ public class Author {
         this.authorSurname = authorSurname;
     }
 
+    public String toString(){
+        return "\nФио автора: " +  this.authorName + " " + this.authorSurname;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (other == null){
+            return false;
+        }
+        if (this.getClass() != other.getClass()) {
+            return false;
+        }
+        Author author = (Author) other;
+        if (authorName.equals(author.getAuthorName()) && authorSurname.equals(author.getAuthorSurname())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int hashCode(){
+        return java.util.Objects.hash(authorName,authorSurname);
+    }
+
 }
